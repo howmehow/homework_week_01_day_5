@@ -45,24 +45,14 @@ def find_pet_by_name(pet_shop, name)
     end
   end
 end
-# def remove_pet_by_name(pet_shop, name)
-#   for pet in pet_shop[:pets]
-#     if name == pet[:name]
-#       pet_shop[:pets].delete(:name)
-#
-# p pet
-#        return msg = nil
-#     end
-#   end
-# end
+
+def remove_pet_by_name(pet_shop, name)
+  pet_shop[:pets].delete_if {|h| h[:name] == name}
+end
+
 
 def add_pet_to_stock(pet_shop, new_pet)
-  pet_shop[:pets] += [{
-    name: new_pet,
-    pet_type: :dog,
-    breed: "Pomsky",
-    price: 1000,
-  }]
+  pet_shop[:pets] += [new_pet]
   return pet_shop[:pets].count()
 end
 
@@ -77,4 +67,8 @@ end
 
 def customer_pet_count(customer)
   customer[:pets].count()
+end
+
+def add_pet_to_customer(customer, new_pet)
+  customer[:pets] += [new_pet]
 end
