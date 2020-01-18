@@ -35,8 +35,8 @@ end
 
 def find_pet_by_name(pet_shop, name)
   for pet in pet_shop[:pets]
-    if name == pet[:name] #if the name that is given is the same as the one you
-      return pet        #can find inside petHashName you can return thefull                   #pet array
+    if name == pet[:name]
+      return pet
     end
   end
   for pet in pet_shop[:pets]
@@ -88,10 +88,16 @@ end
 
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-
+  if pet_shop[:pets].include?(pet) && customer[:cash] >= pet[:price]
   customer[:pets] += [pet]
   pet_shop[:admin][:pets_sold] += 1
   customer[:cash] -= pet[:price]
   pet_shop[:admin][:total_cash] += pet[:price]
+else
+  return customer[:pets]
+  return pet_shop[:admin][:pets_sold]
+  return customer[:cash]
+  return pet_shop[:admin][:total_cash]
+  end
 
 end
